@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Letter for Ashlyn &bull; Air Mail</title>
+  
+  <!-- Retro & Typewriter Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,600;1,400&family=Special+Elite&family=VT323&display=swap" rel="stylesheet">
+
+
+  <style>
+    :root {
+      /* 90s Nostalgic Royal Purple & Lavender Theme */
+      --desk-wood: #11041d;
+      --desk-wood-light: #250b3b;
+      --paper-bg: #faf5ff;
+      --paper-aged: #f3e8ff;
+      --paper-border: #d8b4fe;
+      --ink-color: #2b0b4a;
+      --ink-light: #5b21b6;
+      --accent-purple: #7e22ce;
+      --accent-magenta: #a21caf;
+      --accent-lavender: #c084fc;
+      --wax-purple: #581c87;
+      --tape-purple: rgba(216, 180, 254, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at 50% 30%, var(--desk-wood-light) 0%, var(--desk-wood) 100%);
+      font-family: 'Courier Prime', 'Special Elite', monospace;
+      color: var(--ink-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 12px 120px 12px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* 90s CRT & Purple Vignette Ambiance Overlay */
+    .analog-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle, transparent 55%, rgba(17, 4, 29, 0.6) 100%),
+                  repeating-linear-gradient(rgba(126, 34, 206, 0.03) 0px, rgba(126, 34, 206, 0.03) 1px, transparent 2px);
+      z-index: 100;
+    }
+
+    /* Ambient drifting dust canvas */
+    #dust-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 98;
+    }
+
+    /* ----------------------------------------------------
+       AUTOMATIC AMBIENT FALLING HEARTS & LEAVES
+    ---------------------------------------------------- */
+    .ambient-falling-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 99;
+      user-select: none;
+      will-change: transform, opacity;
+      animation: ambientFall 7.5s cubic-bezier(0.35, 0.45, 0.65, 0.95) forwards;
+    }
+
+    @keyframes ambientFall {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, -30px, 0) rotate(0deg) scale(0.6);
+      }
+      15% {
+        opacity: 0.85;
+        transform: translate3d(var(--sway-1, 20px), 15vh, 0) rotate(15deg) scale(1);
+      }
+      50% {
+        opacity: 0.95;
+        transform: translate3d(var(--sway-2, -25px), 50vh, 0) rotate(-20deg) scale(1.05);
+      }
+      80% {
+        opacity: 0.75;
+        transform: translate3d(var(--sway-3, 30px), 85vh, 0) rotate(25deg) scale(0.95);
+      }
+      100% {
+        opacity: 0;
+        transform: translate3d(var(--sway-4, -15px), 108vh, 0) rotate(-35deg) scale(0.8);
+      }
+    }
+
+    /* ----------------------------------------------------
+       VERY SMALL TWO-LINE MUSIC CONTROL (BOTTOM RIGHT)
+    ---------------------------------------------------- */
+    .mini-sound-controller {
+      position: fixed;
+      bottom: 14px;
+      right: 14px;
+      background: rgba(18, 5, 29, 0.92);
+      border: 1.5px solid #7e22ce;
+      border-radius: 8px;
+      padding: 6px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.7), 0 0 15px rgba(168, 85, 247, 0.3);
+      z-index: 250;
+      font-family: 'VT323', monospace;
+      color: #e9d5ff;
+      width: 215px;
+      backdrop-filter: blur(8px);
+      user-select: none;
+    }
+
+    .mini-sound-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .mini-label {
+      width: 48px;
+      font-size: 13px;
+      color: #d8b4fe;
+      letter-spacing: 0.8px;
+    }
+
+    .mini-slider {
+      flex: 1;
+      height: 4px;
+      accent-color: #c084fc;
+      cursor: pointer;
+    }
+
+    .mini-mute-btn {
+      background: transparent;
+      border: none;
+      color: #c084fc;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 0 2px;
+      line-height: 1;
+      transition: transform 0.15s;
+    }
+
+    .mini-mute-btn:hover {
+      transform: scale(1.15);
+      color: #fff;
+    }
+
+    /* ----------------------------------------------------
+       INTRO OVERLAY (PURPLE AIR MAIL ENVELOPE)
+    ---------------------------------------------------- */
+    .intro-screen {
+      position: fixed;
+      inset: 0;
+      background: rgba(14, 3, 24, 0.95);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 200;
+      transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s;
+    }
+
+    .intro-screen.opened {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .envelope-box {
+      width: 92%;
+      max-width: 520px;
+      height: 310px;
+      background: #ebdcf7;
+      border-radius: 12px;
+      position: relative;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.85), 0 0 30px rgba(147, 51, 234, 0.25);
+      border: 10px dashed transparent;
+      border-image: repeating-linear-gradient(135deg, #7e22ce 0, #7e22ce 16px, transparent 16px, transparent 24px, #c026d3 24px, #c026d3 40px, transparent 40px, transparent 48px) 18;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 25px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .envelope-box:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 32px 70px rgba(0,0,0,0.9), 0 0 45px rgba(168, 85, 247, 0.4);
+    }
+
+    .envelope-stamp {
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      width: 72px;
+      height: 88px;
+      background: #fdfaff;
+      border: 2px dashed #9333ea;
+      box-shadow: 2px 3px 10px rgba(0,0,0,0.18);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      transform: rotate(5deg);
+    }
+
+    .envelope-stamp-inner {
+      border: 1px solid #7e22ce;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #6b21a8;
+      font-weight: bold;
+      font-size: 11px;
+    }
+
+    .postmark-seal {
+      position: absolute;
+      top: 42px;
+      right: 75px;
+      width: 82px;
+      height: 82px;
+      border: 2px solid rgba(126, 34, 206, 0.75);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 9px;
+      color: rgba(107, 33, 168, 0.9);
+      font-weight: bold;
+      transform: rotate(-12deg);
+      pointer-events: none;
+    }
+
+    .postmark-seal::before,
+    .postmark-seal::after {
+      content: "";
+      position: absolute;
+      width: 55px;
+      height: 1px;
+      background: rgba(126, 34, 206, 0.6);
+      right: -50px;
+    }
+    .postmark-seal::before { top: 32px; }
+    .postmark-seal::after { bottom: 32px; }
+
+    .airmail-tag {
+      position: absolute;
+      top: 18px;
+      left: 22px;
+      background: #6b21a8;
+      color: #f5edfd;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2.2px;
+      padding: 5px 10px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    }
+
+    .envelope-address {
+      margin-top: 35px;
+      font-family: 'Special Elite', cursive;
+      font-size: 22px;
+      color: #2b0b4a;
+      line-height: 1.5;
+    }
+
+    .strikethrough-word {
+      text-decoration: line-through;
+      text-decoration-color: #9333ea;
+      text-decoration-thickness: 2.5px;
+      opacity: 0.85;
+      display: inline-block;
+    }
+
+    .wax-seal-btn {
+      margin-top: 25px;
+      background: radial-gradient(circle, #8b28cf 0%, #4a0d78 100%);
+      color: #ffd6ff;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: bold;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.45), inset 0 2px 4px rgba(255,255,255,0.4);
+      cursor: pointer;
+      border: 3px solid #3c096c;
+      animation: purplePulse 2s ease-in-out infinite alternate;
+      transition: transform 0.2s;
+    }
+
+    .wax-seal-btn:hover {
+      transform: scale(1.12);
+    }
+
+    @keyframes purplePulse {
+      0% { box-shadow: 0 0 10px rgba(168, 85, 247, 0.4); }
+      100% { box-shadow: 0 0 30px rgba(216, 180, 254, 0.95); }
+    }
+
+    .open-prompt {
+      margin-top: 14px;
+      font-size: 14px;
+      color: #581c87;
+      font-family: 'Special Elite', monospace;
+      letter-spacing: 1.5px;
+      animation: blinkText 1.6s infinite;
+    }
+
+    .ambient-intro-badge {
+      margin-top: 16px;
+      background: rgba(30, 9, 48, 0.7);
+      border: 1px solid #7e22ce;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      color: #e9d5ff;
+      font-family: 'VT323', monospace;
+      letter-spacing: 1px;
+    }
+
+    @keyframes blinkText {
+      0%, 100% { opacity: 0.55; }
+      50% { opacity: 1; }
+    }
+
+    /* ----------------------------------------------------
+       BLACKOUT SCREEN & FLASHLIGHT SYSTEM
+    ---------------------------------------------------- */
+    .blackout-screen {
+      position: fixed;
+      inset: 0;
+      background: #030106;
+      z-index: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+      cursor: none;
+    }
+
+    .blackout-screen.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* Flashlight glow circle tracking mouse pointer */
+    .blackout-screen.flashlight-active {
+      background: radial-gradient(circle 110px at var(--mouse-x, 50vw) var(--mouse-y, 50vh), transparent 0%, rgba(5, 1, 9, 0.99) 100%);
+    }
+
+    .flashlight-pointer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: rgba(235, 210, 255, 0.9);
+      box-shadow: 0 0 15px #e9d5ff, 0 0 35px #a855f7;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 525;
+      display: none;
+    }
+
+    .blackout-screen.flashlight-active .flashlight-pointer {
+      display: block;
+    }
+
+    .retro-blackout-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #1c092c;
+      border: 3px solid #a855f7;
+      box-shadow: 0 0 40px rgba(168, 85, 247, 0.8), 0 20px 60px rgba(0,0,0,0.9);
+      padding: 24px 32px;
+      border-radius: 10px;
+      text-align: center;
+      font-family: 'Special Elite', monospace;
+      z-index: 530;
+      max-width: 90%;
+      width: 380px;
+      cursor: default;
+    }
+
+    .modal-header {
+      font-size: 22px;
+      font-weight: bold;
+      color: #ffd6ff;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+
+    .modal-body {
+      font-size: 16px;
+      color: #f3e8ff;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .modal-btn {
+      background: #7e22ce;
+      border: 2px solid #d8b4fe;
+      color: #fff;
+      font-family: 'Special Elite', monospace;
+      font-size: 16px;
+      padding: 8px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(126, 34, 206, 0.5);
+      transition: all 0.2s;
+    }
+
+    .modal-btn:hover {
+      background: #9333ea;
+      transform: scale(1.06);
+    }
+
+    /* 
+       LIGHT SWITCH: 100% INVISIBLE IN THE DARK!
+       Only reveals when the flashlight beam shines directly over it.
+    */
+    .secret-light-switch {
+      position: fixed;
+      width: 44px;
+      height: 64px;
+      background: #2a113d;
+      border: 2px solid #a855f7;
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 510;
+      display: none;
+      opacity: 0; /* INVISIBLE in the dark */
+      pointer-events: none;
+      box-shadow: none; /* No self-glow in the dark */
+      transition: opacity 0.25s ease, transform 0.15s ease;
+    }
+
+    .secret-light-switch.illuminated {
+      opacity: 1 !important;
+      pointer-events: all !important;
+      box-shadow: 0 0 20px #c084fc, 0 0 35px #a855f7;
+    }
+
+    .secret-light-switch:hover {
+      transform: scale(1.15);
+    }
+
+    .switch-toggle-knob {
+      width: 14px;
+      height: 24px;
+      background: #e9d5ff;
+      border-radius: 3px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+
+    /* ----------------------------------------------------
+       LETTER CONTAINER OCCUPIES THE SCREEN MOST
+    ---------------------------------------------------- */
+    .letter-container {
+      width: 95vw;
+      max-width: 1140px;
+      min-height: 85vh;
+      background-color: var(--paper-bg);
+      background-image: 
+        radial-gradient(#ebd5fc 12%, transparent 13%),
+        linear-gradient(to right, rgba(147, 51, 234, 0.035) 1px, transparent 1px);
+      background-size: 55px 55px, 100% 100%;
+      box-shadow: 
+        0 6px 16px rgba(0,0,0,0.35),
+        0 24px 65px rgba(0,0,0,0.55),
+        0 0 80px rgba(168, 85, 247, 0.22);
+      border-radius: 6px;
+      padding: 95px 95px 90px 95px;
+      position: relative;
+      border: 1px solid var(--paper-border);
+      margin-top: 25px;
+      margin-bottom: 50px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .letter-container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      box-shadow: inset 0 0 100px rgba(168, 85, 247, 0.2), inset 0 0 35px rgba(126, 34, 206, 0.14);
+      pointer-events: none;
+      border-radius: inherit;
+    }
+
+    .tape-top-left {
+      position: absolute;
+      top: -18px;
+      left: 50px;
+      width: 140px;
+      height: 38px;
+      background: var(--tape-purple);
+      transform: rotate(-4.5deg);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.18);
+      border-left: 2px dashed rgba(255,255,255,0.6);
+      border-right: 2px dashed rgba(255,255,255,0.6);
+      backdrop-filter: blur(2px);
+    }
+
+    .tape-top-right {
+      position: absolute;
+      top: -16px;
+      right: 60px;
+      width: 125px;
+      height: 36px;
+      background: var(--tape-purple);
+      transform: rotate(3.5deg);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.18);
+      border-left: 2px dashed rgba(255,255,255,0.6);
+      border-right: 2px dashed rgba(255,255,255,0.6);
+      backdrop-filter: blur(2px);
+    }
+
+    .letter-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px dashed rgba(147, 51, 234, 0.35);
+      padding-bottom: 35px;
+      margin-bottom: 50px;
+    }
+
+    .letter-metadata {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 16px;
+      color: #6b21a8;
+      font-family: 'Special Elite', monospace;
+      letter-spacing: 0.8px;
+    }
+
+    .vintage-stamp-box {
+      border: 2px dashed #9333ea;
+      padding: 8px 18px;
+      color: #7e22ce;
+      transform: rotate(2.5deg);
+      text-align: center;
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: 3px 3px 10px rgba(0,0,0,0.08);
+      user-select: none;
+    }
+
+    .vintage-stamp-box .stamp-title {
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .vintage-stamp-box .stamp-year {
+      font-size: 18px;
+      font-family: 'Special Elite', monospace;
+      margin-top: 3px;
+    }
+
+    /* ----------------------------------------------------
+       LETTER BODY & SLOW, SMOOTH CHARACTER REVEAL
+    ---------------------------------------------------- */
+    .letter-body {
+      font-family: 'Special Elite', 'Courier Prime', Courier, monospace;
+      font-size: clamp(22px, 2.2vw, 27px);
+      line-height: 2.15;
+      color: var(--ink-color);
+      word-spacing: 2px;
+      text-rendering: optimizeLegibility;
+    }
+
+    .letter-greeting {
+      font-size: clamp(30px, 3.2vw, 38px);
+      font-weight: 700;
+      margin-bottom: 34px;
+      color: #1e0538;
+      letter-spacing: 0.8px;
+    }
+
+    .letter-paragraph {
+      margin-bottom: 42px;
+      text-align: justify;
+      position: relative;
+    }
+
+    .scroll-word {
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .scroll-char {
+      display: inline-block;
+      opacity: 0;
+      filter: blur(6px);
+      transform: translateY(7px);
+      transition: opacity 0.75s cubic-bezier(0.25, 1, 0.5, 1),
+                  filter 0.75s cubic-bezier(0.25, 1, 0.5, 1),
+                  transform 0.75s cubic-bezier(0.25, 1, 0.5, 1);
+      will-change: opacity, filter, transform;
+    }
+
+    .scroll-char.revealed {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0);
+      color: var(--ink-color);
+    }
+
+    .letter-signoff {
+      margin-top: 55px;
+      font-size: clamp(26px, 2.6vw, 32px);
+      line-height: 1.7;
+      position: relative;
+    }
+
+    /* ----------------------------------------------------
+       "CC" CHASE & DANCING SIGNATURE SYSTEM
+    ---------------------------------------------------- */
+    .cc-chase-wrapper {
+      display: inline-block;
+      position: relative;
+      margin-top: 8px;
+    }
+
+    .cc-target-hint {
+      font-family: 'Special Elite', monospace;
+      font-size: 14px;
+      color: #9333ea;
+      margin-bottom: 6px;
+      animation: pulseHint 1.8s infinite alternate;
+    }
+
+    @keyframes pulseHint {
+      0% { opacity: 0.6; }
+      100% { opacity: 1; transform: translateY(-2px); }
+    }
+
+    .sender-name-cc {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(42px, 4.2vw, 54px);
+      font-weight: 700;
+      color: #4c1d95;
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 8px;
+      text-shadow: 0 0 1px rgba(76, 29, 149, 0.3);
+      cursor: grab;
+      user-select: none;
+      transition: transform 0.15s ease-out;
+      will-change: transform;
+    }
+
+    /* Repelled state when escaping mouse cursor */
+    .sender-name-cc.escaping {
+      position: fixed;
+      z-index: 350;
+      box-shadow: 0 0 20px rgba(147, 51, 234, 0.4);
+      background: rgba(243, 232, 255, 0.95);
+      border: 1px dashed #7e22ce;
+    }
+
+    /* Signature Loop Dance when caught */
+    @keyframes loopDance {
+      0% { transform: translateX(0px) rotate(-3deg); }
+      25% { transform: translateX(-16px) rotate(-8deg) scale(1.05); }
+      50% { transform: translateX(0px) rotate(0deg); }
+      75% { transform: translateX(16px) rotate(8deg) scale(1.05); }
+      100% { transform: translateX(0px) rotate(-3deg); }
+    }
+
+    .dancing-signature {
+      display: inline-block;
+      animation: loopDance 2.2s ease-in-out infinite !important;
+      transform-origin: center bottom;
+      color: #4c1d95;
+    }
+
+
+    .bottom-seal-container {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+
+    .final-wax-seal {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #9333ea, #4c1d95);
+      border: 3px solid #3b0764;
+      box-shadow: 3px 6px 16px rgba(0,0,0,0.4), inset 1px 2px 4px rgba(255,255,255,0.4);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #f3e8ff;
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      cursor: default;
+      user-select: none;
+      transition: transform 0.25s;
+    }
+
+    .final-wax-seal:hover {
+      transform: scale(1.1) rotate(-4deg);
+    }
+
+    /* ----------------------------------------------------
+       PRINT STYLES FOR NATIVE BROWSER PRINT
+    ---------------------------------------------------- */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 10mm;
+      }
+      body {
+        background: #ffffff !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .letter-container {
+        box-shadow: none !important;
+        margin: 0 auto !important;
+        page-break-inside: avoid !important;
+        width: 100% !important;
+        max-width: 680px !important;
+        padding: 30px 40px !important;
+        border: 1px solid #d8b4fe !important;
+        min-height: auto !important;
+      }
+      .letter-body {
+        font-size: 15px !important;
+        line-height: 1.65 !important;
+      }
+      .letter-greeting {
+        font-size: 21px !important;
+        margin-bottom: 14px !important;
+      }
+      .letter-paragraph {
+        margin-bottom: 14px !important;
+        font-size: 15px !important;
+        line-height: 1.65 !important;
+      }
+      .scroll-char {
+        opacity: 1 !important;
+        filter: none !important;
+        transform: none !important;
+      }
+      .sender-name-cc, .sender-name {
+        font-size: 34px !important;
+        animation: none !important;
+        color: #4c1d95 !important;
+      }
+      .letter-signoff {
+        margin-top: 22px !important;
+        font-size: 18px !important;
+      }
+      .analog-overlay, #dust-canvas, .mini-sound-controller, .intro-screen,
+      .blackout-screen, .cc-target-hint {
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .letter-container {
+        padding: 55px 28px 85px 28px;
+        margin-top: 35px;
+        width: 96vw;
+      }
+      .letter-body {
+        font-size: 20px;
+        line-height: 1.9;
+      }
+      .letter-greeting {
+        font-size: 26px;
+      }
+      .envelope-box {
+        height: 260px;
+        padding: 20px 15px;
+      }
+      .envelope-address {
+        font-size: 18px;
+        margin-top: 25px;
+      }
+      .wax-seal-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+      }
+      .mini-sound-controller {
+        bottom: 8px;
+        right: 8px;
+        width: 180px;
+        padding: 5px 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 90s Purple Analog Ambiance Overlays -->
+  <div class="analog-overlay"></div>
+  <canvas id="dust-canvas"></canvas>
+
+  <!-- ----------------------------------------------------
+       AUDIO ELEMENTS: THUNDER & CHRISTMAS SONG
+  ---------------------------------------------------- -->
+  <audio id="thunderAudio" loop preload="auto">
+    <source src="5 Minutes of Rain and Thunderstorm Sounds For Focus, Relaxing and Sleep ⛈️ Epidemic ASMR.mp3" type="audio/mpeg">
+    <source src="5%20Minutes%20of%20Rain%20and%20Thunderstorm%20Sounds%20For%20Focus,%20Relaxing%20and%20Sleep%20%E2%9B%88%EF%B8%8F%20Epidemic%20ASMR.mp3" type="audio/mpeg">
+  </audio>
+
+  <audio id="songAudio" loop preload="auto">
+    <source src="Mariah Carey - All I Want for Christmas Is You (Make My Wish Come True Edition).mp3" type="audio/mpeg">
+    <source src="Mariah%20Carey%20-%20All%20I%20Want%20for%20Christmas%20Is%20You%20(Make%20My%20Wish%20Come%20True%20Edition).mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- ----------------------------------------------------
+       VERY SMALL TWO-LINE MUSIC CONTROL (BOTTOM RIGHT CORNER)
+  ---------------------------------------------------- -->
+  <div class="mini-sound-controller" id="miniSoundControl">
+    <div class="mini-sound-line">
+      <span class="mini-label">SFX</span>
+      <input type="range" class="mini-slider" id="thunderSlider" min="0" max="1" step="0.02" value="0.28" title="SFX Volume">
+      <button class="mini-mute-btn" id="sfxMuteBtn" title="Toggle SFX Mute">🔊</button>
+    </div>
+    <div class="mini-sound-line">
+      <span class="mini-label">MUSIC</span>
+      <input type="range" class="mini-slider" id="songSlider" min="0" max="1" step="0.02" value="0.50" title="Music Volume">
+      <button class="mini-mute-btn" id="musicMuteBtn" title="Toggle Music Mute">🔊</button>
+    </div>
+  </div>
+
+  <!-- ----------------------------------------------------
+       BLACKOUT SCREEN & FLASHLIGHT OVERLAY
+  ---------------------------------------------------- -->
+  <div class="blackout-screen" id="blackoutOverlay">
+    <div class="flashlight-pointer" id="flashlightPointer"></div>
+
+    <!-- Hidden Light Switch somewhere on the screen (invisible in dark, revealed by flashlight) -->
+    <div class="secret-light-switch" id="secretLightSwitch" title="Click to turn on the light!">
+      <div class="switch-toggle-knob"></div>
+    </div>
+
+    <!-- Modal Prompt when Blackout hits -->
+    <div class="retro-blackout-modal" id="blackoutModal">
+      <div class="modal-header">⚡ OOPS!</div>
+      <div class="modal-body">CC turned off the light! Find the light switch.</div>
+      <button class="modal-btn" id="blackoutOkBtn">OK</button>
+    </div>
+  </div>
+
+  <!-- ----------------------------------------------------
+       INTRO OVERLAY (Purple Air Mail Envelope to Ashlyn)
+  ---------------------------------------------------- -->
+  <div class="intro-screen" id="introScreen">
+    <div class="envelope-box" id="envelopeBox" onclick="openLetter(event)">
+      <div class="airmail-tag">PAR AVION &bull; AIR MAIL</div>
+      
+      <div class="envelope-stamp">
+        <div class="envelope-stamp-inner">
+          <span>90s</span>
+          <span>POST</span>
+        </div>
+      </div>
+      
+      <div class="postmark-seal">
+        <span>DELIVERY</span>
+        <span>PRIORITY</span>
+        <span>&#9733; 1990s &#9733;</span>
+      </div>
+
+      <div class="envelope-address">
+        <p style="font-size: 14px; color: #6b21a8; letter-spacing: 2px;">DELIVER SPECIAL TO:</p>
+        <p style="font-weight: bold; margin-top: 5px; font-size: 24px;">Ashlyn</p>
+        <p style="font-size: 15px; color: #581c87;">A personal <span class="strikethrough-word">handwritten</span> letter</p>
+      </div>
+
+      <div class="wax-seal-btn" title="Click to break seal & open letter">
+        <span>&diams;</span>
+      </div>
+
+      <div class="open-prompt">&laquo; CLICK WAX SEAL TO UNSEAL LETTER &raquo;</div>
+      
+      <div class="ambient-intro-badge" id="introAudioBadge">
+        Rain &amp; Christmas playing...
+      </div>
+    </div>
+  </div>
+
+  <!-- ----------------------------------------------------
+       THE LETTER ALONE (OCCUPIES THE SCREEN MOST)
+  ---------------------------------------------------- -->
+  <main class="letter-container" id="letterContainer">
+    <div class="tape-top-left"></div>
+    <div class="tape-top-right"></div>
+
+    <!-- Letter Postal Header -->
+    <header class="letter-header">
+      <div class="letter-metadata">
+        <span>POSTAGE NO. 1671216</span>
+        <span>SPECIAL CORRESPONDENCE</span>
+        <span>TO: ASHLYN</span>
+      </div>
+
+      <div class="vintage-stamp-box">
+        <div class="stamp-title">SHORTIE MAIL</div>
+        <div class="stamp-year">NOV' EDITION</div>
+      </div>
+    </header>
+
+    <!-- Letter Body with EXACT verbatim content -->
+    <article class="letter-body">
+      
+      <!-- Greeting -->
+      <div class="letter-greeting scroll-reveal-target">Hey Ashlyn!</div>
+
+      <!-- Paragraph 1 -->
+      <p class="letter-paragraph scroll-reveal-target">
+        Get well soon! I'm possessed with a cold which holds you tightly. I pray you'll be alright soon. Heyy girl, it seems like you're getting okay... Oh my God, you're now perfectly alright!!! Yeah, I know you'll be alright while reading this.
+      </p>
+
+      <!-- Paragraph 2 -->
+      <p class="letter-paragraph scroll-reveal-target">
+        Heyy Shann, you asking about gifts?? See, God blessed me with wonderful gifts which I never even dreamed about, and I trust Him and am waiting for even more great things He planned for me! Anyway, lady, thanks for asking that.
+      </p>
+
+      <!-- Paragraph 3 -->
+      <p class="letter-paragraph scroll-reveal-target">
+        I pray God, let the upcoming Christmas be a season of joy, double joy!!.
+      </p>
+
+      <!-- Paragraph 4 -->
+      <p class="letter-paragraph scroll-reveal-target">
+        Heyy Shann, we were in the hands of Christ, yk. We can't do certain things, we can't label certain things, and we can't normalize things, and we can't be like what we see. Shann, that's the wonderful gift that God gave us. With those emotions and eagerness to respect, care, and support each other, God gives us time to learn patience, responsibility, and faithfulness.
+      </p>
+
+      <!-- Paragraph 5 -->
+      <p class="letter-paragraph scroll-reveal-target">
+        Grl, IDK why I'm writing this. I'm writing because I want to, that's it. Ladyy, I thank God for you!
+      </p>
+
+      <!-- Sign-off: "With love, CC" Chase Minigame -> Ching Chong -->
+      <div class="letter-signoff">
+        <div class="scroll-reveal-target">With love,</div>
+        <div class="cc-chase-wrapper" id="ccChaseWrapper">
+          <div class="cc-target-hint" id="ccHint">Who is CC? Chase to catch CC! ↗</div>
+          <div class="sender-name-cc" id="ccActor">CC</div>
+        </div>
+      </div>
+
+      <!-- Royal Purple Wax Seal Stamp at bottom -->
+      <div class="bottom-seal-container">
+        <div class="final-wax-seal">
+          <span>&diams;</span>
+        </div>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- ----------------------------------------------------
+       SCRIPTS: AUDIO, BLACKOUT MINIGAME, CC CHASE
+  ---------------------------------------------------- -->
+  <script>
+    /* ---------------------------------------------------------
+       1. DUAL AUDIO CONTROLLER (VERY SMALL 2-LINE CONTROLS)
+    --------------------------------------------------------- */
+    const thunderAudio = document.getElementById('thunderAudio');
+    const songAudio = document.getElementById('songAudio');
+    const thunderSlider = document.getElementById('thunderSlider');
+    const songSlider = document.getElementById('songSlider');
+    const sfxMuteBtn = document.getElementById('sfxMuteBtn');
+    const musicMuteBtn = document.getElementById('musicMuteBtn');
+    const introAudioBadge = document.getElementById('introAudioBadge');
+
+    let isAudioPlaying = false;
+    let thunderTargetVol = 0.28;
+    let songTargetVol = 0.50;
+    let sfxMuted = false;
+    let musicMuted = false;
+
+    thunderAudio.volume = thunderTargetVol;
+    songAudio.volume = songTargetVol;
+
+    function startAudioSequence() {
+      if (isAudioPlaying) return;
+
+      thunderAudio.volume = sfxMuted ? 0 : thunderTargetVol;
+      const playPromise = thunderAudio.play();
+
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          isAudioPlaying = true;
+          if (introAudioBadge) introAudioBadge.innerText = "Rain & Christmas playing...";
+
+          setTimeout(() => {
+            if (!isAudioPlaying) return;
+            songAudio.volume = musicMuted ? 0 : songTargetVol;
+            songAudio.play().then(() => {
+              if (introAudioBadge) introAudioBadge.innerText = "Rain & Christmas playing...";
+            }).catch(e => console.log("Song play wait:", e));
+          }, 2800);
+
+        }).catch(err => {
+          console.log("Autoplay waiting for user gesture:", err);
+        });
+      }
+    }
+
+    thunderSlider.addEventListener('input', (e) => {
+      thunderTargetVol = parseFloat(e.target.value);
+      if (!sfxMuted) thunderAudio.volume = thunderTargetVol;
+      sfxMuteBtn.innerText = thunderTargetVol === 0 ? '🔇' : '🔊';
+    });
+
+    songSlider.addEventListener('input', (e) => {
+      songTargetVol = parseFloat(e.target.value);
+      if (!musicMuted) songAudio.volume = songTargetVol;
+      musicMuteBtn.innerText = songTargetVol === 0 ? '🔇' : '🔊';
+    });
+
+    sfxMuteBtn.addEventListener('click', () => {
+      sfxMuted = !sfxMuted;
+      thunderAudio.volume = sfxMuted ? 0 : thunderTargetVol;
+      sfxMuteBtn.innerText = sfxMuted ? '🔇' : '🔊';
+    });
+
+    musicMuteBtn.addEventListener('click', () => {
+      musicMuted = !musicMuted;
+      songAudio.volume = musicMuted ? 0 : songTargetVol;
+      musicMuteBtn.innerText = musicMuted ? '🔇' : '🔊';
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      startAudioSequence();
+    });
+
+    function startOnFirstUserGesture() {
+      if (!isAudioPlaying) {
+        startAudioSequence();
+      }
+      window.removeEventListener('click', startOnFirstUserGesture);
+      window.removeEventListener('touchstart', startOnFirstUserGesture);
+    }
+    window.addEventListener('click', startOnFirstUserGesture, { passive: true });
+    window.addEventListener('touchstart', startOnFirstUserGesture, { passive: true });
+
+    /* ---------------------------------------------------------
+       2. INTRO UNSEALING LOGIC
+    --------------------------------------------------------- */
+    let letterHasBeenOpened = false;
+
+    function openLetter(event) {
+      const introScreen = document.getElementById('introScreen');
+      introScreen.classList.add('opened');
+      letterHasBeenOpened = true;
+
+      if (!isAudioPlaying) {
+        startAudioSequence();
+      }
+
+      setTimeout(() => {
+        checkScrollCharacters();
+      }, 400);
+    }
+
+    /* ---------------------------------------------------------
+       3. SLOW & SMOOTH CHARACTER-BY-CHARACTER REVEAL
+    --------------------------------------------------------- */
+    const allCharacters = [];
+
+    function setupScrollReveal() {
+      const targets = document.querySelectorAll('.scroll-reveal-target');
+
+      targets.forEach(el => {
+        const rawText = el.innerText;
+        el.innerHTML = '';
+
+        const words = rawText.split(/(\s+)/);
+
+        words.forEach(word => {
+          if (/^\s+$/.test(word)) {
+            const spaceNode = document.createTextNode(word);
+            el.appendChild(spaceNode);
+          } else {
+            const wordSpan = document.createElement('span');
+            wordSpan.className = 'scroll-word';
+
+            for (let i = 0; i < word.length; i++) {
+              const charSpan = document.createElement('span');
+              charSpan.className = 'scroll-char';
+              charSpan.textContent = word[i];
+              wordSpan.appendChild(charSpan);
+              allCharacters.push(charSpan);
+            }
+            el.appendChild(wordSpan);
+          }
+        });
+      });
+    }
+
+    setupScrollReveal();
+
+    let revealQueue = [];
+    let isProcessingQueue = false;
+
+    function processRevealQueue() {
+      if (revealQueue.length === 0) {
+        isProcessingQueue = false;
+        return;
+      }
+
+      isProcessingQueue = true;
+      const charEl = revealQueue.shift();
+      if (charEl && !charEl.classList.contains('revealed')) {
+        charEl.classList.add('revealed');
+      }
+
+      setTimeout(processRevealQueue, 35);
+    }
+
+    function checkScrollCharacters() {
+      if (!letterHasBeenOpened) return;
+
+      const viewportBottom = window.scrollY + window.innerHeight * 0.90;
+
+      for (let i = 0; i < allCharacters.length; i++) {
+        const charEl = allCharacters[i];
+        if (charEl.classList.contains('revealed') || charEl.dataset.queued === 'true') continue;
+
+        const rect = charEl.getBoundingClientRect();
+        const charAbsoluteTop = window.scrollY + rect.top;
+
+        if (charAbsoluteTop <= viewportBottom) {
+          charEl.dataset.queued = 'true';
+          revealQueue.push(charEl);
+        }
+      }
+
+      if (!isProcessingQueue && revealQueue.length > 0) {
+        processRevealQueue();
+      }
+    }
+
+    /* ---------------------------------------------------------
+       4. RANDOM BLACKOUT & LIGHT SWITCH MINIGAME
+       (Switch is completely invisible until the flashlight shines over it!)
+    --------------------------------------------------------- */
+    let blackoutTriggered = false;
+    let flashlightEnabled = false;
+
+    const blackoutOverlay = document.getElementById('blackoutOverlay');
+    const blackoutModal = document.getElementById('blackoutModal');
+    const blackoutOkBtn = document.getElementById('blackoutOkBtn');
+    const secretLightSwitch = document.getElementById('secretLightSwitch');
+    const flashlightPointer = document.getElementById('flashlightPointer');
+
+    function triggerBlackoutEvent() {
+      if (blackoutTriggered || !letterHasBeenOpened) return;
+      blackoutTriggered = true;
+
+      blackoutOverlay.classList.add('active');
+      blackoutModal.style.display = 'block';
+    }
+
+    blackoutOkBtn.addEventListener('click', () => {
+      blackoutModal.style.display = 'none';
+      flashlightEnabled = true;
+      blackoutOverlay.classList.add('flashlight-active');
+
+      // Place the secret light switch randomly in viewport
+      const switchX = Math.floor(Math.random() * (window.innerWidth - 160)) + 80;
+      const switchY = Math.floor(Math.random() * (window.innerHeight - 160)) + 80;
+      secretLightSwitch.style.left = `${switchX}px`;
+      secretLightSwitch.style.top = `${switchY}px`;
+      secretLightSwitch.style.display = 'flex';
+      // Ensure it starts invisible in the pitch black
+      secretLightSwitch.classList.remove('illuminated');
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (flashlightEnabled) {
+        blackoutOverlay.style.setProperty('--mouse-x', `${e.clientX}px`);
+        blackoutOverlay.style.setProperty('--mouse-y', `${e.clientY}px`);
+        flashlightPointer.style.left = `${e.clientX}px`;
+        flashlightPointer.style.top = `${e.clientY}px`;
+
+        // Check if flashlight beam illuminates the switch!
+        if (secretLightSwitch.style.display !== 'none') {
+          const switchRect = secretLightSwitch.getBoundingClientRect();
+          const switchCenterX = switchRect.left + switchRect.width / 2;
+          const switchCenterY = switchRect.top + switchRect.height / 2;
+          const dist = Math.hypot(e.clientX - switchCenterX, e.clientY - switchCenterY);
+
+          // Flashlight beam radius is 110px. Only visible when flashlight is over it!
+          if (dist < 105) {
+            secretLightSwitch.classList.add('illuminated');
+          } else {
+            secretLightSwitch.classList.remove('illuminated');
+          }
+        }
+      }
+    });
+
+    secretLightSwitch.addEventListener('click', () => {
+      flashlightEnabled = false;
+      secretLightSwitch.style.display = 'none';
+      secretLightSwitch.classList.remove('illuminated');
+
+      blackoutOverlay.style.background = 'rgba(255, 255, 255, 0.4)';
+      setTimeout(() => {
+        blackoutOverlay.classList.remove('flashlight-active');
+        blackoutOverlay.classList.remove('active');
+        blackoutOverlay.style.background = '';
+      }, 300);
+    });
+
+    let isScrollChecking = false;
+    window.addEventListener('scroll', () => {
+      if (!isScrollChecking) {
+        isScrollChecking = true;
+        requestAnimationFrame(() => {
+          checkScrollCharacters();
+
+          // Trigger blackout randomly around mid-scroll
+          if (!blackoutTriggered && letterHasBeenOpened && window.scrollY > 450) {
+            triggerBlackoutEvent();
+          }
+
+          isScrollChecking = false;
+        });
+      }
+    }, { passive: true });
+
+    /* ---------------------------------------------------------
+       5. "WITH LOVE, CC" REPEL & CHASE MINIGAME -> CHING CHONG
+       (No visible trap box! Herded to top-right corner to catch)
+    --------------------------------------------------------- */
+    const ccActor = document.getElementById('ccActor');
+    const ccHint = document.getElementById('ccHint');
+
+    let ccCaught = false;
+    let ccPosX = 0;
+    let ccPosY = 0;
+    let chaseActive = false;
+
+    window.addEventListener('mousemove', (e) => {
+      if (ccCaught || !letterHasBeenOpened) return;
+
+      const rect = ccActor.getBoundingClientRect();
+      const ccCenterX = rect.left + rect.width / 2;
+      const ccCenterY = rect.top + rect.height / 2;
+
+      const dist = Math.hypot(e.clientX - ccCenterX, e.clientY - ccCenterY);
+
+      if (dist < 110) {
+        if (!chaseActive) {
+          chaseActive = true;
+          ccActor.classList.add('escaping');
+          ccPosX = rect.left;
+          ccPosY = rect.top;
+        }
+
+        const angle = Math.atan2(ccCenterY - e.clientY, ccCenterX - e.clientX);
+        const repelSpeed = 42;
+
+        ccPosX += Math.cos(angle) * repelSpeed;
+        ccPosY += Math.sin(angle) * repelSpeed;
+
+        ccPosX = Math.max(20, Math.min(window.innerWidth - 120, ccPosX));
+        ccPosY = Math.max(20, Math.min(window.innerHeight - 80, ccPosY));
+
+        ccActor.style.left = `${ccPosX}px`;
+        ccActor.style.top = `${ccPosY}px`;
+
+        // Check if CC reached the top-right corner area (no visible box displayed)
+        if (ccPosX >= window.innerWidth - 170 && ccPosY <= 150) {
+          catchCC();
+        }
+      }
+    });
+
+    function catchCC() {
+      ccCaught = true;
+
+      ccActor.classList.remove('escaping');
+      ccActor.style.position = '';
+      ccActor.style.left = '';
+      ccActor.style.top = '';
+      ccActor.innerText = 'Ching Chong.';
+      ccActor.classList.add('dancing-signature');
+
+      ccHint.innerText = "Caught! It's Ching Chong! ✨";
+      ccHint.style.color = '#7e22ce';
+
+      for (let i = 0; i < 15; i++) {
+        setTimeout(() => {
+          spawnAutomaticParticle();
+        }, i * 60);
+      }
+    }
+
+    /* ---------------------------------------------------------
+       6. AUTOMATIC AMBIENT FALLING HEARTS & LEAVES
+    --------------------------------------------------------- */
+    const ambientSymbols = ['💜', '💕', '🍃', '🌿', '✨', '🍂', '💜', '🌸', '🌱', '💖'];
+
+    function spawnAutomaticParticle() {
+      const p = document.createElement('div');
+      p.className = 'ambient-falling-particle';
+      
+      const symbol = ambientSymbols[Math.floor(Math.random() * ambientSymbols.length)];
+      p.innerText = symbol;
+
+      const size = Math.floor(Math.random() * 12) + 18;
+      p.style.fontSize = `${size}px`;
+
+      const startX = Math.random() * (window.innerWidth - 60) + 30;
+      p.style.left = `${startX}px`;
+      p.style.top = `-25px`;
+
+      const sway1 = (Math.random() - 0.5) * 50;
+      const sway2 = (Math.random() - 0.5) * 80;
+      const sway3 = (Math.random() - 0.5) * 60;
+      const sway4 = (Math.random() - 0.5) * 90;
+      p.style.setProperty('--sway-1', `${sway1}px`);
+      p.style.setProperty('--sway-2', `${sway2}px`);
+      p.style.setProperty('--sway-3', `${sway3}px`);
+      p.style.setProperty('--sway-4', `${sway4}px`);
+
+      const fallDuration = (Math.random() * 2.5 + 6.5).toFixed(2);
+      p.style.animationDuration = `${fallDuration}s`;
+
+      document.body.appendChild(p);
+
+      setTimeout(() => {
+        p.remove();
+      }, parseFloat(fallDuration) * 1000 + 400);
+    }
+
+    setInterval(() => {
+      spawnAutomaticParticle();
+    }, 550);
+
+    /* ---------------------------------------------------------
+       8. 90s FLOATING PURPLE DUST MOTES ON CANVAS
+    --------------------------------------------------------- */
+    const canvas = document.getElementById('dust-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const particlesArray = [];
+    const particleCount = 26;
+
+    for (let i = 0; i < particleCount; i++) {
+      particlesArray.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        size: Math.random() * 2.2 + 0.6,
+        speedX: (Math.random() - 0.5) * 0.3,
+        speedY: (Math.random() - 0.5) * 0.3,
+        opacity: Math.random() * 0.5 + 0.15
+      });
+    }
+
+    function renderDust() {
+      ctx.clearRect(0, 0, width, height);
+      for (let p of particlesArray) {
+        ctx.fillStyle = `rgba(225, 195, 255, ${p.opacity})`;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+      }
+      requestAnimationFrame(renderDust);
+    }
+    renderDust();
+  </script>
+</body>
+</html>
